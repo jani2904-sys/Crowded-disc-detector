@@ -216,3 +216,22 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Model weights
+*.pth
+*.pt
+
+# MLflow
+mlruns/
+mlflow.db
+
+# Checkpoints
+checkpoints/
+
+# Data and outputs
+*.csv
+naion_results/
+overlay_contours/
+
+# Kaggle
+kaggle.json
