@@ -1,6 +1,7 @@
 # 👁️Crowded Disc Detector
 
 An automated screening tool for **Non-Arteritic Anterior Ischemic Optic Neuropathy (NAION)** risk assessment from fundus photographs using deep learning and clinical feature extraction.
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://crowded-disc-detector-ygnabdcvblgvdgyoqhnkuf.streamlit.app)
 
 [![Python](https://img.shields.io/badge/Python-3.11-blue.svg)](https://python.org)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0-orange.svg)](https://pytorch.org)
