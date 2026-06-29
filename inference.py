@@ -31,9 +31,31 @@ os.environ["MLFLOW_TRACKING_PASSWORD"] = os.getenv("MLFLOW_TRACKING_PASSWORD")
 # Model loading
 # ---------------------------------------------------------------------------
 def _load_segmentation_model():
-    """Load EfficientNet-b4 UNet from Dagshub MLflow registry."""
-    model = mlflow.pytorch.load_model("models:/UNet_EfficientNetB4_OpticDisc/latest")
-    model = model.to(DEVICE)
+    import os
+    import torch
+    import mlflow.pytorch
+
+    # Force CPU mapping — required for environments without GPU
+    # (Streamlit Cloud, CI, local CPU machines)
+    os.environ["MLFLOW_DEFAULT_PYTORCH_DEVICE"] = "cpu"
+
+    # Patch torch.load to always use CPU map_location
+    original_torch_load = torch.load
+    def patched_load(*args, **kwargs):
+        kwargs.setdefault("map_location", torch.device("cpu"))
+        return original_torch_load(*args, **kwargs)
+    torch.load = patched_load
+
+    try:
+        model = mlflow.pytorch.load_model(
+            "models:/UNet_EfficientNetB4_OpticDisc/latest"
+        )
+    finally:
+        # Restore original torch.load after model is loaded
+        torch.load = original_torch_load
+
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    model  = model.to(device)
     model.eval()
     return model
 
