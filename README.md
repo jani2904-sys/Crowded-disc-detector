@@ -58,7 +58,7 @@ Fundus Image
 | Segmentation | UNet + EfficientNet-b4 + scSE | Disc Seg | Dice | 0.941 |
 | Segmentation | UNet + EfficientNet-b4 + scSE | Cup Seg | Dice | 0.848 |
 
-Trained on [REFUGE2](https://refuge.grand-challenge.org/) — 800 training images, 400 validation, 400 test images with optic disc/cup segmentation masks.
+Trained on [REFUGE2](https://refuge.grand-challenge.org/) — 400 training images, 400 validation, 400 test images with optic disc/cup segmentation masks.
 
 ---
 
